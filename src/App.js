@@ -3,15 +3,15 @@ import "./App.css";
 
 function ParentComponent({ childTitle }) {
   const [value, setValue] = React.useState(0);
-  const ChildTitle = React.useMemo(() => childTitle, [childTitle]);
-
+  //const ChildTitle = React.useMemo(() => childTitle, [childTitle]);
+  console.log("Parent rendering");
   return (
     <div className="Component">
       <h1>
-        Parent State Value Change: <span className="Varible">{value}</span>
+        Parent State Value Change: <span className="Variable">{value}</span>
       </h1>
 
-      <ChildComponent title={ChildTitle} />
+      <Mchild title={childTitle} />
       <button
         onClick={() => {
           setValue((value) => value + 1);
@@ -24,19 +24,21 @@ function ParentComponent({ childTitle }) {
 }
 
 const ChildComponent = function ({ title }) {
+  console.log("Child rendering");
   return (
     <div className="Component">
       <h1>
-        Child Title: <span className="Varible">{title}</span>
+        Child Title: <span className="Variable">{title}</span>
       </h1>
     </div>
   );
 };
+const Mchild = React.memo(ChildComponent);
 
 export default function App() {
   return (
     <div>
-      <ParentComponent childTitle={"Child Component"} className="App" />
+      <ParentComponent childTitle={"Child Component"}  />
     </div>
   );
 }
