@@ -3,7 +3,7 @@ import "./App.css";
 
 function ParentComponent({ childTitle }) {
   const [value, setValue] = React.useState(0);
-  //const ChildTitle = React.useMemo(() => childTitle, [childTitle]);
+  //const ChildTitle = React.useMemo(() => childTitle, [childTitle]); -- You can't create a constant which is String - immutable with usememo
   console.log("Parent rendering");
   return (
     <div className="Component">
