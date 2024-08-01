@@ -11,7 +11,7 @@ function ParentComponent({ childTitle }) {
         Parent State Value Change: <span className="Variable">{value}</span>
       </h1>
 
-      <Mchild title={childTitle} />
+      <ChildComponent title={childTitle} />
       <button
         onClick={() => {
           setValue((value) => value + 1);
@@ -23,7 +23,7 @@ function ParentComponent({ childTitle }) {
   );
 }
 
-const ChildComponent = function ({ title }) {
+const ChildComponent = React.memo(({title}) => {
   console.log("Child rendering");
   return (
     <div className="Component">
@@ -32,8 +32,7 @@ const ChildComponent = function ({ title }) {
       </h1>
     </div>
   );
-};
-const Mchild = React.memo(ChildComponent);
+});
 
 export default function App() {
   return (
